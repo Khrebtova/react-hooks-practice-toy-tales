@@ -22,6 +22,15 @@ function App() {
     setToys([...toys, newToy])
   }
 
+  function handleDelete(id){
+    console.log(id)
+    setToys(toys.filter((toy)=> toy.id !== id))
+  }
+
+  function updateLikes(updatedToy){
+    setToys(toys.map((toy)=> toy.id === updatedToy.id ? updatedToy : toy))
+  }
+
   return (
     <>
       <Header />
@@ -29,7 +38,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={toys}/>
+      <ToyContainer toys={toys} onDelete={handleDelete} onLikes={updateLikes}/>
     </>
   );
 }
